@@ -1,6 +1,5 @@
 import { randomUUID } from "crypto";
 
-import { Product } from "@prisma/client";
 import {
   IProductRepository,
   ProductCreate,
@@ -23,7 +22,7 @@ class ProductInMemoryRepository implements IProductRepository {
     this.products.push(product);
     return product;
   }
-  async findByBarCode(bar_code: String): Promise<Product | null> {
+  async findByBarCode(bar_code: String): Promise<ProductSave | null> {
     // SELECT * FROM PRODUCTS WHERE BAR_CODE = BAR_CODE LIMTI 1
     return this.products.find((product) => product.bar_code === bar_code);
   }

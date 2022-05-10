@@ -1,4 +1,4 @@
-import { Product } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 export type ProductCreate = {
   name: string;
@@ -8,13 +8,13 @@ export type ProductCreate = {
 };
 
 export type ProductSave = {
-  name: String;
-  bar_code: String;
-  price: Number;
-  id: String;
+  name: string;
+  bar_code: string;
+  price: number;
+  id: string;
 };
 
 export interface IProductRepository {
   save(data: ProductCreate): Promise<ProductSave>;
-  findByBarCode(bar_code: String): Promise<Product | null>;
+  findByBarCode(bar_code: String): Promise<ProductSave | null>;
 }

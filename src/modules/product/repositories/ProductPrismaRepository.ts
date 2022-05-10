@@ -1,4 +1,3 @@
-import { Product } from "@prisma/client";
 import { prismaClient } from "../../../database/client";
 import {
   IProductRepository,
@@ -26,13 +25,14 @@ class ProductPrismaRepository implements IProductRepository {
     return productResult;
   }
 
-  async findByBarCode(bar_code: string): Promise<Product | null> {
+  async findByBarCode(bar_code: string): Promise<ProductSave | null> {
     const product = await prismaClient.product.findFirst({
       where: {
         bar_code,
       },
     });
-    return product;
+    const productSave = new Object(product);
+    return productSave as ProductSave;
   }
 }
 
